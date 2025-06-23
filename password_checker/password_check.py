@@ -20,12 +20,12 @@ def evaluate_password(password):
     if len(password)>=12:
         score+=1
     
-    if re.search(r'[a-z],password'):
+    if re.search(r'[a-z]',password):
         score +=1
     else:
         suggestions.append("Add Lowercase letters")
         
-    if re.search(r'[A-Z],password'):
+    if re.search(r'[A-Z]',password):
         score +=1
     else:
         suggestions.append("Add Uppercase letters")
@@ -55,9 +55,12 @@ def evaluate_password(password):
     elif score<=6:
         strength='MODERATE!!!'
         color="blue"
-    elif score >=8:
-        strength=' VERY STRONG!!!'
+    elif score <=7:
+        strength='STRONG!!!'
         color='green'
+    else:
+        strength='VERY STRONG!!!'
+        color='dark green'
         
     return strength, score, suggestions,color
 
@@ -121,5 +124,40 @@ window =tk.Tk()
 window.title("🔐 Password Strength Evaluator + Generator")
 window.geometry("550x480")
 window.resizable(False, False)
+
+style =ttk.Style()
+style.configure("TLabel",font=("Segoe UI",10))
+style.configure("TEntry",font=("Segoe UI",10))
+
+entry_frame = ttk.Frame(window)
+entry_frame.pack(pady=15)
+
+ttk.Label(entry_frame, text='Enter Password: ',font=("Segoe UI",12,'bold')).grid(row=0,column=0,padx=5)
+password_entry=ttk.Entry(entry_frame, width=35,show='*')
+password_entry.grid(row=0,column=1)
+password_entry.bind("<KeyRelease>",on_key_release)
+
+toggle_btn = ttk.Button(entry_frame, text='Show',command=toggle_password, width=6)
+toggle_btn.grid(row=0,column=2,padx=5)
+
+strength_label= tk.Label(window,text='Strength: ',font=('Seogoe UI',11,'bold'))
+strength_label.pack(pady=10)
+
+ttk.Label(window,text="Suggestions to Improve: ",font=('Segoe UI',11)).pack()
+suggestions_text= tk.Listbox(window,width=60,height=6)
+suggestions_text.pack(pady=5)
+
+generator_frame=ttk.Frame(window)
+generator_frame.pack(pady=10)
+
+ttk.Label(generator_frame,text='Generate Strong Password: ',font=('Segoe UI',11,'bold')).grid(row=0,columnspan=2,pady=5)
+ttk.Label(generator_frame,text='Length: ').grid(row=1,column=0,padx=5)
+
+length_slider = ttk.Scale(generator_frame,from_=8,to=32,orient='horizontal',length=200)
+length_slider.set(12)
+length_slider.grid(row=1,column=1)
+
+generate_btn=ttk.Button(generator_frame,text='Generate Password',command=generate_password)
+generate_btn.grid(row=2,column=0,columnspan=2,pady=10)
 
 window.mainloop()
