@@ -19,8 +19,7 @@ A simple yet powerful Python GUI application that helps users **create**, **eval
 - **Tkinter** for GUI
 - **`hashlib`**, **`requests`**, **`secrets`**, and **`re`** modules for backend logic and security
 
-## How It Works – Password Evaluator & Generator
-
+## How It Works 
 1. **Live Analysis:**
    - Password is analyzed in real-time as you type.
 2. **Strength Criteria:**
@@ -35,6 +34,15 @@ A simple yet powerful Python GUI application that helps users **create**, **eval
    - Clear input  
    - Toggle password visibility  
    - All via a clean `tkinter` GUI
+
+### Installation
+
+```bash
+git clone  "https://github.com/nidraoo/SCT_CS_3.git"   
+pip install -r requirements.txt    
+cd password_checker    
+py password_check     
+
 
 
 
