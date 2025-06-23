@@ -23,16 +23,12 @@ A simple yet powerful Python GUI application that helps users **create**, **eval
 
 1. **Live Analysis:**
    - Password is analyzed in real-time as you type.
-
 2. **Strength Criteria:**
    - Based on length, use of upper/lowercase, digits, special characters, uniqueness, and repetition.
-
 3. **Scoring & Feedback:**
    - Strength is categorized (Very Weak → Very Strong) with improvement suggestions.
-
 4. **Breach Check:**
    - Password is securely checked via the [Have I Been Pwned](https://haveibeenpwned.com/) API using SHA-1 hashing (only partial hash is sent).
-
 5. **Extras:**
    - Generate secure passwords  
    - Copy to clipboard  
