@@ -61,6 +61,20 @@ def evaluate_password(password):
         
     return strength, score, suggestions,color
 
-
+#pwned passwords API chechker
+def check_pwned_password(password):
+    sha1 = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
+    prefix,suffix = sha1[:5],sha1[5:]
+    try:
+        response = requests.get(f'https://api.pwnedpasswords.com/range/{prefix}')
+        if response.status_code != 200:
+            return 'API ERROR'
+        hashes =(line.split(':')for line in response.text.splitlines())
+        for h,count in hashes:
+            if h == suffix:
+                return int(count)
+        return 0
+    except Exception as e:
+            return f"ERROR:{e}"
         
     
