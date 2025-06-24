@@ -41,4 +41,4 @@ A simple yet powerful Python GUI application that helps users **create**, **eval
 git clone  "https://github.com/nidraoo/SCT_CS_3.git"   
 pip install -r requirements.txt    
 cd password_checker    
-py password_check     
+py password_check.py    
